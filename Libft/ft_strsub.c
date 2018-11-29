@@ -6,7 +6,7 @@
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/27 18:11:15 by wned              #+#    #+#             */
-/*   Updated: 2018/11/27 19:01:30 by wned             ###   ########.fr       */
+/*   Updated: 2018/11/28 17:55:13 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,5 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 		start++;
 		len--;
 	}
-
 	return (substring_begin);
 }

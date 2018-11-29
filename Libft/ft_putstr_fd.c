@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 11:13:46 by wned              #+#    #+#             */
-/*   Updated: 2018/11/29 17:26:22 by wned             ###   ########.fr       */
+/*   Created: 2018/11/29 12:15:50 by wned              #+#    #+#             */
+/*   Updated: 2018/11/29 12:20:49 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	char	*s1;
-	char	*s2;
-	size_t	i;
-
-	s1 = (char *)dst;
-	s2 = (char *)src;
-	if (src == dst)
-		return (dst);
-	i = 0;
-	while (i < n)
+	if (!s)
+		return ;
+	while (*s != '\0')
 	{
-		s1[i] = s2[i];
-		i++;
+		ft_putchar_fd(*s, fd);
+		s++;
 	}
-	return (dst);
 }

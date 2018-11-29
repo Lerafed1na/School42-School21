@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 11:13:46 by wned              #+#    #+#             */
-/*   Updated: 2018/11/29 17:26:22 by wned             ###   ########.fr       */
+/*   Created: 2018/11/29 12:24:55 by wned              #+#    #+#             */
+/*   Updated: 2018/11/29 12:31:24 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*s1;
-	char	*s2;
-	size_t	i;
-
-	s1 = (char *)dst;
-	s2 = (char *)src;
-	if (src == dst)
-		return (dst);
-	i = 0;
-	while (i < n)
+	if (n == -2147483648)
+		ft_putstr_fd("-2147483648", fd);
+	if (n < 0)
 	{
-		s1[i] = s2[i];
-		i++;
+		ft_putchar_fd('-', fd);
+		n *= -1;
 	}
-	return (dst);
+	if (n >= 10)
+	{
+		ft_putnbr_fd((n / 10), fd);
+		ft_putnbr_fd((n % 10), fd);
+	}
+	else
+		ft_putchar_fd((n + '0'), fd);
 }

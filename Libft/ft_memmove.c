@@ -6,7 +6,7 @@
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 12:32:11 by wned              #+#    #+#             */
-/*   Updated: 2018/11/26 19:24:12 by wned             ###   ########.fr       */
+/*   Updated: 2018/11/29 14:10:47 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 
 	s1 = (char *)dst;
 	s2 = (char *)src;
+	if (src == dst)
+		return (dst);
 	if (s2 < s1)
 		while (len)
 		{

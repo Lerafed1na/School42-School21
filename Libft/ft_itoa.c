@@ -1,34 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 12:14:59 by wned              #+#    #+#             */
-/*   Updated: 2018/11/29 15:57:14 by wned             ###   ########.fr       */
+/*   Created: 2018/11/29 12:34:58 by wned              #+#    #+#             */
+/*   Updated: 2018/11/29 17:04:38 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+void	ft_isnegative(int *n, int *negative)
 {
-	char	*new;
-	char	*new_begin;
-	size_t	len;
+	if (*n < 0)
+	{
+		*negative = 1;
+		*n *= -1;
+	}
+}
 
-	len = size + 1;
-	if (len == 0)
-		return (0);
-	new = (char *)malloc(sizeof(char) * (len));
-	new_begin = new;
-	if (new == NULL)
+char	*ft_itoa(int n)
+{
+	int		tmpn;
+	int		len;
+	int		negative;
+	char	*new;
+
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = 1;
+	tmpn = n;
+	while (tmpn /= 10)
+		len++;
+	negative = 0;
+	ft_isnegative(&n, &negative);
+	len += negative;
+	if ((new = ft_strnew(len)) == NULL)
 		return (NULL);
+	new[len] = '\0';
 	while (len--)
 	{
-		*new = '\0';
-		new++;
+		new[len] = (n % 10) + '0';
+		n /= 10;
 	}
-	return (new_begin);
+	if (negative)
+		new[0] = '-';
+	return (new);
 }

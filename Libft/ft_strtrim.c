@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/26 11:13:46 by wned              #+#    #+#             */
-/*   Updated: 2018/11/29 17:26:22 by wned             ###   ########.fr       */
+/*   Created: 2018/11/28 15:57:35 by wned              #+#    #+#             */
+/*   Updated: 2018/11/29 17:05:30 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+char	*ft_strtrim(char const *s)
 {
-	char	*s1;
-	char	*s2;
-	size_t	i;
+	char	*new;
+	int		i;
+	int		j;
 
-	s1 = (char *)dst;
-	s2 = (char *)src;
-	if (src == dst)
-		return (dst);
+	if (!s)
+		return (NULL);
+	j = ft_strlen(s) - 1;
 	i = 0;
-	while (i < n)
-	{
-		s1[i] = s2[i];
+	while ((s[i] == ' ' || s[i] == '\t' || s[i] == '\n') && (i != j))
 		i++;
-	}
-	return (dst);
+	while ((s[j] == ' ' || s[j] == '\n' || s[j] == '\t') && (i != j))
+		j--;
+	if (i == j)
+		return (ft_strnew(0));
+	new = ft_strsub(s, i, j - i + 1);
+	return (new);
 }
