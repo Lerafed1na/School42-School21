@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnequ.c                                       :+:      :+:    :+:   */
+/*   ft_strisuppercase.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/27 17:51:37 by wned              #+#    #+#             */
-/*   Updated: 2018/12/01 14:07:31 by wned             ###   ########.fr       */
+/*   Created: 2018/12/01 16:10:57 by wned              #+#    #+#             */
+/*   Updated: 2018/12/01 16:13:36 by wned             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_strnequ(char const *s1, char const *s2, size_t n)
+int	ft_strisuppercase(char *str)
 {
-	if (!s1 || !s2)
-		return (0);
-	while ((*s1 || *s2) && n--)
+	if (*str == '\0')
+		return (1);
+	while (*str != '\0')
 	{
-		if (!(*s1++ == *s2++))
+		if (*str >= 'A' && *str <= 'Z')
+			str++;
+		else
 			return (0);
 	}
 	return (1);
