@@ -1,42 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wned <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/25 12:20:49 by wned              #+#    #+#             */
-/*   Updated: 2019/01/31 17:02:54 by hrice            ###   ########.fr       */
+/*   Created: 2019/01/30 13:31:23 by wned              #+#    #+#             */
+/*   Updated: 2019/01/31 17:35:04 by hrice            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		main(int argc, char **argv)
+t_list	*get_tetri_list(char *str)
 {
-	t_map	*map;
-	char	*str;
+	int		i;
+	char	c;
 	t_list	*tetri_list;
+	t_tetri *tetri;
 
-	if (argc != 2)
+	tetri_list = NULL;
+	tetri = NULL;
+	c = 'A';
+	i = 0;
+	while (str[i])
 	{
-		ft_putstr("usage: fillit input_file\n");
-		return (0);
+		tetri = get_block(&str[i], c);
+		ft_lstadd(&tetri_list, ft_lstnew(tetri, sizeof(t_tetri)));
+		i += 19;
+		if (str[i + 1] == '\n')
+			i += 2;
+		else
+			break ;
+		c++;
 	}
-	if ((str = read_file(open(argv[1], O_RDONLY))) == NULL)
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
-	if (!is_filevalid(str))
-	{
-		ft_putstr("error\n");
-		return (0);
-	}
-	tetri_list = get_tetri_list(str);
-	map = solve(tetri_list);
-	print_map(map);
-	free_map(map);
-	free_all_tetri(tetri_list);
-	return (1);
+	ft_lst_rev(&tetri_list);
+	return (tetri_list);
 }
